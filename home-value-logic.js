@@ -1,4 +1,4 @@
-
+<script>
   var data = {};
   var street_address = '';
   var city = '';
@@ -313,3 +313,4 @@
     }
   };
 
+</script>
