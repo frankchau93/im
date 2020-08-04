@@ -82,7 +82,7 @@
                     "<li class='w-col w-col-6'><div class='detail-title'>" +
                     humanize(val.type) +
                     "</div><span class='housedetaillist'>SQ FT:" +
-                    val.sq_ft +
+                    val.sq_ft ? val.sq_ft : 'N/A' +
                     '</span></li>';
                 } else {
                   newItem =
@@ -98,30 +98,12 @@
                   "<li class='w-col w-col-6'><div class='detail-title'>" +
                   humanize(index) +
                   "</div><span class='housedetaillist'>" +
-                  val.idx +
+                  val.idx ? val.idx : 'N/A' +
                   '</span></li>';
                 inHTML += newItem;
               }
             });
-            $.each(value, function (idx, val) {
-              if (typeof val == 'object') {
-                var newItem =
-                  "<li class='w-col w-col-6'><div class='detail-title'>" +
-                  humanize(val.type) +
-                  "</div><span class='housedetaillist'>SQ FT:" +
-                  val.sq_ft +
-                  '</span></li>';
-                inHTML += newItem;
-              } else {
-                var newItem =
-                  "<li class='w-col w-col-6'><div class='detail-title'>" +
-                  humanize(index) +
-                  "</div><span class='housedetaillist'>" +
-                  val.idx +
-                  '</span></li>';
-                inHTML += newItem;
-              }
-            });
+            
           } else {
             var newItem =
               "<li class='w-col w-col-6'><div class='detail-title'>" +
