@@ -25,7 +25,8 @@
       // success
       console.log(data, textStatus);
       let results = data.data;
-      $('.fulladdress').text(
+      if(results){
+        $('.fulladdress').text(
         `${results.address.formatted_street_address} ${results.address.city}, ${results.address.state} ${results.address.zip_code}`
       );
       $('.amount').text(`$${numberWithCommas(results.valuation.value)}`);
@@ -117,8 +118,14 @@
       });
 
       $('#housedetails').html(inHTML);
-      $('#results').fadeOut();
-      $('#propdetails').fadeIn();
+          $('#results').fadeOut();
+        $('#propdetails').fadeIn();
+      }else {
+        $('#results').fadeOut();
+        errorBlock.style.display = 'block';
+      }
+      
+    
     }).fail(function () {
       errorBlock.style.display = 'block';
     });
