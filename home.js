@@ -20,7 +20,7 @@
     if (!street_address || !city || !state || !zip_code) {
       return;
     }
-    var postURL = `https://sandbox.estated.com/v4/property?token=wJfCcOLbvu8tXyNh5SzR85DX37xeJv&street_address=${street_address}&city=${city}&state=${state}&zip_code=${zip_code}`;
+    var postURL = `https://sandbox.estated.com/v4/property?token=OA4xkl5AK3wzqzoSb7M1wZWTcIriv9&street_address=${street_address}&city=${city}&state=${state}&zip_code=${zip_code}`;
     $.get(postURL, function (data, textStatus) {
       // success
       console.log(data, textStatus);
