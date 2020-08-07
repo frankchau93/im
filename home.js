@@ -5,6 +5,7 @@
   var state = '';
   var zip_code = '';
   var housedetails = {};
+  var errormsg = document.getElementById('error-msg');
   function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   }
@@ -122,7 +123,8 @@
         $('#propdetails').fadeIn();
       }else {
         $('#results').fadeOut();
-        errorBlock.style.display = 'block';
+        errormsg.style.display = 'block';
+        $('#autocomplete').addClass('has-error');
       }
       
     
@@ -173,6 +175,8 @@
     });
 
     autocomplete.addListener('place_changed', function () {
+      errormsg.style.display = 'none';
+      $('#autocomplete').removeClass('has-error');
       infowindow.close();
       marker.setVisible(false);
       marker2.setVisible(false);
