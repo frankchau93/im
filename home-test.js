@@ -177,6 +177,7 @@
     });
 
     autocomplete.addListener('place_changed', function () {
+      $('#results').slideUp();
       errormsg.style.display = 'none';
       $('#autocomplete').removeClass('has-error');
       infowindow.close();
