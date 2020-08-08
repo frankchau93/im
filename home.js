@@ -129,7 +129,9 @@
       
     
     }).fail(function () {
-      errorBlock.style.display = 'block';
+      $('#results').fadeOut();
+        errormsg.style.display = 'block';
+        $('#autocomplete').addClass('has-error');
     });
   }
   function initMap() {
