@@ -27,6 +27,8 @@ let currencyMask = textMaskAddons.createNumberMask({
 window.onload = (event) => {
   addMaskToInput('#coBorrowerPhoneNumber', phoneMask);
   addMaskToInput('#phoneNumber', phoneMask);
+  addMaskToInput('#businessPhone', phoneMask);
+  addMaskToInput('#coBorrowerBusinessPhone', phoneMask);
   var forms = document.querySelectorAll('form');
   forms.forEach(function (form) {
     ValidForm(form, { errorPlacement: 'before' });
@@ -190,7 +192,7 @@ window.onload = (event) => {
       ) {
         formData.applications[0].employment.push({
           owner: 'Borrower',
-          employerName: $('#prevCurrentEmployer').val(),
+          employerName: $('#prevEmployer').val(),
           currentEmploymentIndicator: false,
           phoneNumber: $('#prevBusinessPhone').val(),
           email: $('#prevBusinessEmail').val(),
@@ -217,15 +219,15 @@ window.onload = (event) => {
       var formData = createFormData();
       console.log(formData);
       if (isFormValid) {
+        $(
+          "form :input:not(:input[type='radio']):not(:input[type='submit'])"
+        ).each(function () {
+          var id = $(this).attr('id'); // This is the jquery object of the input, do what you will
+          if ($('#' + id) && $('#' + id + 'Text')) {
+            $('#' + id + 'Text').text($('#' + id).val());
+          }
+        });
         postData(postURL, formData).then((data) => {
-          $(
-            "form :input:not(:input[type='radio']):not(:input[type='submit'])"
-          ).each(function () {
-            var id = $(this).attr('id'); // This is the jquery object of the input, do what you will
-            if ($('#' + id) && $('#' + id + 'Text')) {
-              $('#' + id + 'Text').text($('#' + id).val());
-            }
-          });
           $('#loanPurposeText').text(
             $('input[name="loanPurpose"]:checked').val()
           );
