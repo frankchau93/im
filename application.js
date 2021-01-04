@@ -29,7 +29,7 @@ window.onload = (event) => {
   addMaskToInput('#phoneNumber', phoneMask);
   addMaskToInput('#businessPhone', phoneMask);
   addMaskToInput('#coBorrowerBusinessPhone', phoneMask);
-  addMaskToInput('#coBorrowerBusinessPhone', prevBusinessPhone);
+  addMaskToInput('#prevBusinessPhone', phoneMask);
 
   var forms = document.querySelectorAll('form');
   forms.forEach(function (form) {
