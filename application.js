@@ -219,7 +219,7 @@ window.onload = (event) => {
         $('#loanOfficer').val();
       var formData = createFormData();
       console.log(formData);
-      if (isFormValid) {
+      if (isFormValid && applicationForm.checkValidity()) {
         $(
           "form :input:not(:input[type='radio']):not(:input[type='submit'])"
         ).each(function () {
