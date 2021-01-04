@@ -314,7 +314,7 @@ $(document).ready(function () {
     var isCoborrower =
       document.querySelector('input[name="coBorrower"]:checked') &&
       document.querySelector('input[name="coBorrower"]:checked').value == 'Yes';
-    if (isCoborrower && sliderLogic.controller.currentStep == 3) {
+    if (!isCoborrower && sliderLogic.controller.currentStep == 3) {
       $('.w-slider-nav div:nth-child(2)').trigger('tap');
       sliderLogic.controller.currentStep = 2;
       sliderLogic.view.setStepsDisplay(sliderLogic.controller.currentStep);
@@ -371,13 +371,13 @@ $(document).ready(function () {
       (sliderLogic.controller.currentStep == 3 &&
         document.querySelector('input[name="coBorrower"]:checked') &&
         document.querySelector('input[name="coBorrower"]:checked').value ==
-          'No')
+          'Yes')
     ) {
       $('#customNext').text('Submit');
     } else {
       $('#customNext').text('Next');
     }
-    if (sliderLogic.controller.currentStep == 0) {
+    if (sliderLogic.controller.currentStep == 1) {
       $('#customBack').hide();
     } else {
       $('#customBack').show();
