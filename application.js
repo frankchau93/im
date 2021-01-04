@@ -29,6 +29,8 @@ window.onload = (event) => {
   addMaskToInput('#phoneNumber', phoneMask);
   addMaskToInput('#businessPhone', phoneMask);
   addMaskToInput('#coBorrowerBusinessPhone', phoneMask);
+  addMaskToInput('#coBorrowerBusinessPhone', prevBusinessPhone);
+
   var forms = document.querySelectorAll('form');
   forms.forEach(function (form) {
     ValidForm(form, { errorPlacement: 'before' });
@@ -149,7 +151,6 @@ window.onload = (event) => {
                 addressPostalCode: $('#businessZip').val(),
                 title: $('#positionTitle').val(),
                 startDate: $('#startDate').val(),
-                endDate: $('#endDate').val(),
                 SelfEmployedIndicator:
                   $('#selfEmployed').val() == 'Yes' ? true : false,
               },
@@ -227,10 +228,13 @@ window.onload = (event) => {
             $('#' + id + 'Text').text($('#' + id).val());
           }
         });
+        $('#loanOfficerAgentText').text(
+          $('#loanOfficer option:selected').text()
+        );
+        $('#loanPurposeText').text(
+          $('input[name="loanPurpose"]:checked').val()
+        );
         postData(postURL, formData).then((data) => {
-          $('#loanPurposeText').text(
-            $('input[name="loanPurpose"]:checked').val()
-          );
           if (
             document.querySelector('input[name="coBorrower"]:checked') &&
             document.querySelector('input[name="coBorrower"]:checked').value ==
