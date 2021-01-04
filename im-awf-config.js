@@ -316,7 +316,7 @@ $(document).ready(function () {
       document.querySelector('input[name="coBorrower"]:checked').value == 'Yes';
     if (!isCoborrower && sliderLogic.controller.currentStep == 3) {
       $('.w-slider-nav div:nth-child(2)').trigger('tap');
-      sliderLogic.controller.currentStep = 2;
+      sliderLogic.controller.currentStep = 1;
       sliderLogic.view.setStepsDisplay(sliderLogic.controller.currentStep);
     } else {
       document.getElementById('backBtn').click();
@@ -368,10 +368,10 @@ $(document).ready(function () {
     var currStep = e.currentTarget.innerHTML;
     if (
       currStep == '5' ||
-      (sliderLogic.controller.currentStep == '4' &&
+      (currStep == '4' &&
         document.querySelector('input[name="coBorrower"]:checked') &&
         document.querySelector('input[name="coBorrower"]:checked').value ==
-          'Yes')
+          'No')
     ) {
       $('#customNext').text('Submit');
     } else {
