@@ -309,6 +309,19 @@ $(document).ready(function () {
       sliderLogic.view.setMaskHeight(sliderLogic.controller.currentStep);
     }, 100);
   });
+  $('#customBack').click(function (evt) {
+    evt.preventDefault();
+    var isCoborrower =
+      document.querySelector('input[name="coBorrower"]:checked') &&
+      document.querySelector('input[name="coBorrower"]:checked').value == 'Yes';
+    if (isCoborrower && sliderLogic.controller.currentStep == 3) {
+      $('.w-slider-nav div:nth-child(2)').trigger('tap');
+      sliderLogic.controller.currentStep = 2;
+      sliderLogic.view.setStepsDisplay(sliderLogic.controller.currentStep);
+    } else {
+      document.getElementById('backBtn').click();
+    }
+  });
   $('#customNext').click(function (evt) {
     evt.preventDefault();
     $('#coborrowerNameContainer').text($('#coBorrowerFirst').val() || '');
@@ -327,6 +340,7 @@ $(document).ready(function () {
       $('.w-slider-nav div:nth-child(4)').trigger('tap');
       sliderLogic.controller.currentStep = 3;
       sliderLogic.view.setMaskHeight(sliderLogic.controller.currentStep);
+      sliderLogic.view.setStepsDisplay(sliderLogic.controller.currentStep);
     } else if (
       sliderLogic.controller.currentStep == 3 &&
       document.querySelector('input[name="coBorrower"]:checked') &&
@@ -338,6 +352,7 @@ $(document).ready(function () {
     } else {
       document.getElementById('nextBtn').click();
     }
+
     if (sliderLogic.controller.currentStep < stepheaders.length) {
       $('#title').text(stepheaders[sliderLogic.controller.currentStep].title);
       $('#subtitle').text(
@@ -351,7 +366,22 @@ $(document).ready(function () {
   });
   $('body').on('DOMSubtreeModified', '#current-step', function (e) {
     var currStep = e.currentTarget.innerHTML;
-
+    if (
+      sliderLogic.controller.currentStep == 4 ||
+      (sliderLogic.controller.currentStep == 3 &&
+        document.querySelector('input[name="coBorrower"]:checked') &&
+        document.querySelector('input[name="coBorrower"]:checked').value ==
+          'No')
+    ) {
+      $('#customNext').text('Submit');
+    } else {
+      $('#customNext').text('Next');
+    }
+    if (sliderLogic.controller.currentStep == 0) {
+      $('#customBack').hide();
+    } else {
+      $('#customBack').show();
+    }
     $('.application-step').removeClass('nav-active');
     $(`.application-step[data-msf-nav=${currStep}]`).addClass('nav-active');
   });
