@@ -367,8 +367,8 @@ $(document).ready(function () {
   $('body').on('DOMSubtreeModified', '#current-step', function (e) {
     var currStep = e.currentTarget.innerHTML;
     if (
-      sliderLogic.controller.currentStep == 4 ||
-      (sliderLogic.controller.currentStep == 3 &&
+      currStep == '5' ||
+      (sliderLogic.controller.currentStep == '4' &&
         document.querySelector('input[name="coBorrower"]:checked') &&
         document.querySelector('input[name="coBorrower"]:checked').value ==
           'Yes')
@@ -377,7 +377,7 @@ $(document).ready(function () {
     } else {
       $('#customNext').text('Next');
     }
-    if (sliderLogic.controller.currentStep == 1) {
+    if (currStep == '1') {
       $('#customBack').hide();
     } else {
       $('#customBack').show();
