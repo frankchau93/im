@@ -20,10 +20,16 @@ let phoneMask = [
   /\d/,
   /\d/,
 ];
+let currencyMask = textMaskAddons.createNumberMask({
+  prefix: '$',
+  includeThousandsSeparator: !0,
+});
 window.onload = (event) => {
+  addMaskToInput('#coBorrowerPhoneNumber', phoneMask);
+  addMaskToInput('#phoneNumber', phoneMask);
   var forms = document.querySelectorAll('form');
   forms.forEach(function (form) {
-    ValidForm(form, { errorPlacement: 'after' });
+    ValidForm(form, { errorPlacement: 'before' });
   });
   // variables
   var isFormValid = false;
@@ -74,7 +80,7 @@ window.onload = (event) => {
     jQuery
       .getScript('https://code.jquery.com/ui/1.12.1/jquery-ui.js')
       .done(function () {
-        $('.form-date').datepicker();
+        $('.form-date').datepicker({ maxDate: new Date() });
         $('#endDate').datepicker('setDate', new Date());
       });
 
@@ -120,6 +126,7 @@ window.onload = (event) => {
         },
         applications: [
           {
+            LoanAmount: $('#loanAmount').val(),
             borrower: {
               emailAddressText: emailAddressField.value,
               firstName: firstNameField.value,
@@ -169,9 +176,9 @@ window.onload = (event) => {
           addressCity: $('#coBorrowerBusinessCity').val(),
           addressState: $('#coBorrowerBusinessState').val(),
           addressPostalCode: $('#coborrowerBusinessZip').val(),
-          title: $('#positionTitle').val(),
+          title: $('#coBorrowerPositionTitle').val(),
           startDate: $('#coBorrowerStartDate').val(),
-          endDate: $('#coBorrowerPositionTitle').val(),
+          endDate: $('#coBorrowerEndDate').val(),
           SelfEmployedIndicator:
             $('#coBorrowerSelfEmployed').val() == 'Yes' ? true : false,
         });
@@ -205,7 +212,8 @@ window.onload = (event) => {
 
     function submitButtonLogic() {
       var postURL =
-        'https://dtx0yw4xpa.execute-api.us-east-2.amazonaws.com/test/helloworld';
+        'https://dtx0yw4xpa.execute-api.us-east-2.amazonaws.com/test/helloworld?agent=' +
+        $('#loanOfficer').val();
       var formData = createFormData();
       console.log(formData);
       if (isFormValid) {
