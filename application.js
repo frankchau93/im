@@ -39,19 +39,7 @@ window.onload = (event) => {
   var successBlock = document.getElementById('successBlock');
   var errorBlock = document.getElementById('errorBlock');
   // START
-
-  // wait until jQuery loads
-  checkIfJQueryHasLoaded();
-
-  function checkIfJQueryHasLoaded() {
-    if (window.jQuery != undefined) {
-      runFormCode();
-    } else {
-      window.setTimeout(function () {
-        checkIfJQueryHasLoaded();
-      }, 100);
-    }
-  }
+  runFormCode();
 
   function generateFormResults(step, resultContainer) {
     $(
@@ -92,7 +80,9 @@ window.onload = (event) => {
 
     generateFormResults('step-2', 'borrowerInfo');
     generateFormResults('step-3', 'coBorrowerInfo');
-    generateFormResults('step-4', 'employmentInfo');
+
+    generateFormResults('currentEmployerInfo', 'employmentInfo');
+    generateFormResults('prevEmployerContainer', 'prevEmploymentInfo');
     generateFormResults('step-5', 'coBorrowerEmploymentInfo');
     // disable form submission if user presses enter
     $(applicationForm).on('keyup keypress', function (e) {
@@ -152,7 +142,7 @@ window.onload = (event) => {
                 startDate: $('#startDate').val(),
                 endDate: $('#endDate').val(),
                 SelfEmployedIndicator:
-                  $('#coBorrowerSelfEmployed').val() == 'Yes' ? true : false,
+                  $('#selfEmployed').val() == 'Yes' ? true : false,
               },
             ],
           },
@@ -186,6 +176,28 @@ window.onload = (event) => {
             $('#coBorrowerSelfEmployed').val() == 'Yes' ? true : false,
         });
       }
+      if (
+        document.querySelector('input[name="anotherEmployer"]:checked') &&
+        document.querySelector('input[name="anotherEmployer"]:checked').value ==
+          'Yes'
+      ) {
+        formData.applications[0].employment.push({
+          owner: 'Borrower',
+          employerName: $('#prevCurrentEmployer').val(),
+          currentEmploymentIndicator: false,
+          phoneNumber: $('#prevBusinessPhone').val(),
+          email: $('#prevBusinessEmail').val(),
+          addressStreetLine1: $('#prevBusinessAddress').val(),
+          addressCity: $('#prevBusinessCity').val(),
+          addressState: $('#prevBusinessState').val(),
+          addressPostalCode: $('#prevBusinessZip').val(),
+          title: $('#prevPositionTitle').val(),
+          startDate: $('#prevStartDate').val(),
+          endDate: $('#prevEndDate').val(),
+          SelfEmployedIndicator:
+            $('#prevSelfEmployed').val() == 'Yes' ? true : false,
+        });
+      }
       return formData;
     }
 
@@ -215,6 +227,14 @@ window.onload = (event) => {
               'Yes'
           ) {
             $('#coBorrowerInfo').show();
+            $('#coBorrowerEmploymentInfo').show();
+          }
+          if (
+            document.querySelector('input[name="anotherEmployer"]:checked') &&
+            document.querySelector('input[name="anotherEmployer"]:checked')
+              .value == 'Yes'
+          ) {
+            $('#prevEmploymentInfo').show();
             $('#coBorrowerEmploymentInfo').show();
           }
           applicationForm.style.display = 'none';
