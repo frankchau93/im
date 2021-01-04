@@ -304,58 +304,55 @@ Webflow.push(function () {
 });
 
 $(document).ready(function () {
-    $(':radio').click(function () {
-      setTimeout(function () {
-        sliderLogic.view.setMaskHeight(sliderLogic.controller.currentStep);
-      }, 100);
-    });
-    $('#customNext').click(function (evt) {
-      evt.preventDefault();
-			$('#coborrowerNameContainer').text($('#coBorrowerFirst').val() || ""));
-      if (
-        sliderLogic.controller.currentStep == 1 &&
-        document.querySelector('input[name="coBorrower"]:checked') &&
-        document.querySelector('input[name="coBorrower"]:checked').value ==
-          'Yes'
-      ) {
-        $('.if-borrower').show();
-        document.getElementById('nextBtn').click();
-      } else if (
-        sliderLogic.controller.currentStep == 1 &&
-        document.querySelector('input[name="coBorrower"]:checked') &&
-        document.querySelector('input[name="coBorrower"]:checked').value == 'No'
-      ) {
-        $('.w-slider-nav div:nth-child(4)').trigger('tap');
-        sliderLogic.controller.currentStep = 3;
-        sliderLogic.view.setMaskHeight(sliderLogic.controller.currentStep);
-      } else if (
-        sliderLogic.controller.currentStep == 3 &&
-        document.querySelector('input[name="coBorrower"]:checked') &&
-        document.querySelector('input[name="coBorrower"]:checked').value == 'No'
-      ) {
-        sliderLogic.controller.currentStep = 4;
-        document.getElementById('nextBtn').click();
-        //document.getElementById('submitButtonAlt').click();
-      } else {
-        document.getElementById('nextBtn').click();
-      }
-      if (sliderLogic.controller.currentStep < stepheaders.length) {
-        $('#title').text(stepheaders[sliderLogic.controller.currentStep].title);
-        $('#subtitle').text(
-          stepheaders[sliderLogic.controller.currentStep].subtitle
-        );
-      } else {
-        $('#title-section').hide();
-        $('#step').hide();
-        $('#thank-you-title').show();
-      }
-    });
-    $('body').on('DOMSubtreeModified', '#current-step', function (e) {
-     
-      var currStep = e.currentTarget.innerHTML;
-
- 
-      $('.application-step').removeClass('nav-active');
-      $(`.application-step[data-msf-nav=${currStep}]`).addClass('nav-active');
-    });
+  $(':radio').click(function () {
+    setTimeout(function () {
+      sliderLogic.view.setMaskHeight(sliderLogic.controller.currentStep);
+    }, 100);
   });
+  $('#customNext').click(function (evt) {
+    evt.preventDefault();
+    $('#coborrowerNameContainer').text($('#coBorrowerFirst').val() || '');
+    if (
+      sliderLogic.controller.currentStep == 1 &&
+      document.querySelector('input[name="coBorrower"]:checked') &&
+      document.querySelector('input[name="coBorrower"]:checked').value == 'Yes'
+    ) {
+      $('.if-borrower').show();
+      document.getElementById('nextBtn').click();
+    } else if (
+      sliderLogic.controller.currentStep == 1 &&
+      document.querySelector('input[name="coBorrower"]:checked') &&
+      document.querySelector('input[name="coBorrower"]:checked').value == 'No'
+    ) {
+      $('.w-slider-nav div:nth-child(4)').trigger('tap');
+      sliderLogic.controller.currentStep = 3;
+      sliderLogic.view.setMaskHeight(sliderLogic.controller.currentStep);
+    } else if (
+      sliderLogic.controller.currentStep == 3 &&
+      document.querySelector('input[name="coBorrower"]:checked') &&
+      document.querySelector('input[name="coBorrower"]:checked').value == 'No'
+    ) {
+      sliderLogic.controller.currentStep = 4;
+      document.getElementById('nextBtn').click();
+      //document.getElementById('submitButtonAlt').click();
+    } else {
+      document.getElementById('nextBtn').click();
+    }
+    if (sliderLogic.controller.currentStep < stepheaders.length) {
+      $('#title').text(stepheaders[sliderLogic.controller.currentStep].title);
+      $('#subtitle').text(
+        stepheaders[sliderLogic.controller.currentStep].subtitle
+      );
+    } else {
+      $('#title-section').hide();
+      $('#step').hide();
+      $('#thank-you-title').show();
+    }
+  });
+  $('body').on('DOMSubtreeModified', '#current-step', function (e) {
+    var currStep = e.currentTarget.innerHTML;
+
+    $('.application-step').removeClass('nav-active');
+    $(`.application-step[data-msf-nav=${currStep}]`).addClass('nav-active');
+  });
+});
