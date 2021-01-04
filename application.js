@@ -81,8 +81,8 @@ window.onload = (event) => {
     generateFormResults('step-2', 'borrowerInfo');
     generateFormResults('step-3', 'coBorrowerInfo');
 
-    generateFormResults('currentEmployerInfo', 'employmentInfo');
-    generateFormResults('prevEmployerContainer', 'prevEmploymentInfo');
+    generateFormResults('currentemployerinfo', 'employmentInfo');
+    generateFormResults('prevemployercontainer', 'prevEmploymentInfo');
     generateFormResults('step-5', 'coBorrowerEmploymentInfo');
     // disable form submission if user presses enter
     $(applicationForm).on('keyup keypress', function (e) {
