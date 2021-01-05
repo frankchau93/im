@@ -94,6 +94,10 @@ window.onload = (event) => {
     generateFormResults('currentemployerinfo', 'employmentInfo');
     generateFormResults('prevemployercontainer', 'prevEmploymentInfo');
     generateFormResults('step-5', 'coBorrowerEmploymentInfo');
+    var urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('agent')) {
+      $('#loanOfficer').val(urlParams.get('agent'));
+    }
     // disable form submission if user presses enter
     $(applicationForm).on('keyup keypress', function (e) {
       var keyCode = e.keyCode || e.which;
