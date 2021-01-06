@@ -120,6 +120,86 @@ Webflow.push(function () {
       {
         conditions: [
           {
+            selector: 'input[name="coBorrower"]',
+            operator: 'equal',
+            value: 'Yes',
+          },
+        ],
+        operator: 'and',
+        actions: [
+          { selector: '#coBorrowerFirst', action: 'require', clear: true },
+          { selector: '#coBorrowerLast', action: 'require', clear: true },
+          { selector: '#coborrowerEmail', action: 'require', clear: true },
+          {
+            selector: '#coBorrowerPhoneNumber',
+            action: 'require',
+            clear: true,
+          },
+          {
+            selector: '#coBorrowerCurrentEmployer',
+            action: 'require',
+            clear: true,
+          },
+          {
+            selector: '#coBorrowerPhoneNumber',
+            action: 'require',
+            clear: true,
+          },
+          {
+            selector: '#coBorrowerSelfEmployed',
+            action: 'require',
+            clear: true,
+          },
+          {
+            selector: '#coBorrowerBusinessEmail',
+            action: 'require',
+            clear: true,
+          },
+          {
+            selector: '#coBorrowerBusinessPhone',
+            action: 'require',
+            clear: true,
+          },
+          {
+            selector: '#coBorrowerBusinessAddress',
+            action: 'require',
+            clear: true,
+          },
+          {
+            selector: '#coBorrowerBusinessCity',
+            action: 'require',
+            clear: true,
+          },
+          {
+            selector: '#coBorrowerStartDate',
+            action: 'require',
+            clear: true,
+          },
+          {
+            selector: '#coBorrowerEndDate',
+            action: 'require',
+            clear: true,
+          },
+          {
+            selector: '#coBorrowerBusinessState',
+            action: 'require',
+            clear: true,
+          },
+          {
+            selector: '#coborrowerBusinessZip',
+            action: 'require',
+            clear: true,
+          },
+          {
+            selector: '#coBorrowerPositionTitle',
+            action: 'require',
+            clear: true,
+          },
+        ],
+      },
+      {
+        conditions: [
+          {
             selector: 'input[name="loanOfficer"]',
             operator: 'equal',
             value: 'Yes',
