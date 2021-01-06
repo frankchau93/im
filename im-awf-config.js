@@ -231,11 +231,6 @@ Webflow.push(function () {
         operator: 'and',
         actions: [
           {
-            selector: '#prevEmployerContainer',
-            action: 'hide',
-            clear: false,
-          },
-          {
             selector: '#prevEmployer',
             action: 'unrequire',
             clear: true,
@@ -294,6 +289,11 @@ Webflow.push(function () {
             selector: '#prevEndDate',
             action: 'unrequire',
             clear: true,
+          },
+          {
+            selector: '#prevEmployerContainer',
+            action: 'hide',
+            clear: false,
           },
         ],
       },
@@ -364,6 +364,13 @@ $(document).ready(function () {
       $('#thank-you-title').show();
     }
   });
+  //   $('.application-step').click(function () {
+  //     $('.application-step').removeClass('nav-active');
+  //     $(
+  //       `.application-step[data-msf-nav=${sliderLogic.controller.currentStep}]`
+  //     ).addClass('nav-active');
+  //     sliderLogic.view.setStepsDisplay(sliderLogic.controller.currentStep);
+  //   });
   $('body').on('DOMSubtreeModified', '#current-step', function (e) {
     var currStep = e.currentTarget.innerHTML;
     if (
