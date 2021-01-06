@@ -260,7 +260,18 @@ window.onload = (event) => {
           errorBlock.style.display = 'none';
         });
       } else {
-        contactForm.reportValidity();
+        applicationForm.reportValidity();
+        var list = $('#application-form')[0].querySelectorAll(':invalid');
+        var errmsg = 'The following fields need attention: ';
+        for (i = 0; i < list.length; i++) {
+          var item = list[i];
+          if (i == list.length - 1) {
+            errmsg = errmsg.concat(` ${item.name}.`);
+          } else {
+            errmsg = errmsg.concat(` ${item.name},`);
+          }
+        }
+        alert(errmsg);
       }
     }
   }
